@@ -29,7 +29,6 @@ export const Points = styled.div`
     font-size: 16px;
     line-height: 14px;
     font-weight: 500;
-    
   } 
 
   strong{

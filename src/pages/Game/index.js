@@ -5,7 +5,7 @@ import { Route, Redirect, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 
 import Loader from '../../components/Loader'
-
+import Footer from '../../components/Footer'
 import Score from '../../components/Score'
 
 const Start = lazy(() => import('./Start'))
@@ -20,26 +20,6 @@ export const GameContent = styled.div`
   align-items: center;
   justify-content: space-between;
 `
-export const Footer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-
-  button{
-    background: none;
-    border: 2px solid #5b6b84;
-    border-radius: 8px;
-    padding:  8px;
-    width: 100%;
-    max-width: 150px;
-    color: #fbfbfb;
-
-    &:active{
-      opacity: 0.5;
-    }
-  }
-`
 
 const Game = memo(() => {
   return (
@@ -51,12 +31,9 @@ const Game = memo(() => {
           <Route path='/result' component={Result} />
           <Redirect to='/' />
         </Switch>
+      <Footer/>
       </Suspense>
-      <Footer>
-        <button>Rules</button>
-      </Footer>
     </GameContent>
-
   )
 })
 
