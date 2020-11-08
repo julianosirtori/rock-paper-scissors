@@ -1,9 +1,18 @@
 import React from 'react'
 
-// import { Container } from './styles';
+import Background from '../../../asset/bg-triangle.svg'
+
+import * as S from './styles'
 
 function Start () {
-  return <h1>Start</h1>
+  return (
+    <S.Container>
+      <img src={Background} />
+      <S.ItemPaper variant="paper"/>
+      <S.ItemRock variant="rock"/>
+      <S.ItemScissors variant="scissors"/>
+    </S.Container>
+  )
 }
 
 export default Start
