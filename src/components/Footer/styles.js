@@ -9,13 +9,14 @@ export const FooterStyled = styled.div`
 `
 
 export const Button = styled.button`
- background: none;
-    border: 2px solid #5b6b84;
-    border-radius: 8px;
-    padding:  8px;
-    width: 100%;
-    max-width: 150px;
-    color: #fbfbfb;
+  background: none;
+  border: 2px solid #5b6b84;
+  border-radius: 8px;
+  padding:  8px;
+  width: 100%;
+  max-width: 150px;
+  color: #fbfbfb;
+  font-weight: 500;
 
     &:active{
       opacity: 0.5;

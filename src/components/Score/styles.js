@@ -10,6 +10,12 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   max-width: 700px;
+
+  @media only screen and (max-width: 600px) {
+    img{
+      width: 100px;
+    }
+  }
 `
 
 export const Points = styled.div`
@@ -23,7 +29,6 @@ export const Points = styled.div`
   flex-direction: column;
   align-items: center;
 
-
   span{
     color: #333c77;
     font-size: 16px;
@@ -35,6 +40,31 @@ export const Points = styled.div`
     color: #575469;
     font-size: 48px;
     font-weight: bolder;
+  }
+
+  @media only screen and (max-width: 600px) {
+    padding: 16px 8px;
+    height: 80px;
+
+    max-width: 100px;
+    strong{
+      font-size: 38px;
+    }
+  }
+    
+
+  @media only screen and (max-width: 400px) {
+    padding: 16px 8px;
+    height: 80px;
+
+    max-width: 80px;
+    span{
+      font-size: 14px;
+      line-height: 10px;
+    }
+    strong{
+      font-size: 32px;
+    }
   }
   
 `

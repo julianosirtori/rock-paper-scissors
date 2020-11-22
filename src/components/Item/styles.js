@@ -1,51 +1,69 @@
 import styled, { css } from 'styled-components'
 
-const borderSizes = {
-  default: '25px',
-  big: '50px'
-}
-
-const variants = {
-  paper: css`
-    border: ${({ size }) => borderSizes[size]} solid #5572f2;
-    box-shadow: 0 0.7em 0 #2844bf;
-
-    &:active{
-      box-shadow: 0 0 0 #2844bf;
-    }
-
-  `,
-  rock: css`
-    border: ${({ size }) => borderSizes[size]} solid #de3f5b;
-    box-shadow: 0 0.7em 0 #9f1232;
-
-    &:active{
-      box-shadow: 0 0 0 #9f1232;
-    }
-  `,
-  scissors: css`
-    border: ${({ size }) => borderSizes[size]} solid #eba722;
-    box-shadow: 0 0.7em 0 #c76c1b;
-
-    &:active{
-      box-shadow: 0 0 0 #c76c1b;
-    }
-  `
+const colors = {
+  paper: '#5572f2',
+  paperDark: '#2844bf',
+  rock: '#de3f5b',
+  rockDark: '#9f1232',
+  scissors: '#eba722',
+  scissorsDark: '#c76c1b'
 }
 
 const sizes = {
   default: css`
     width: 200px;
     height: 200px;
+    border: ${({ variant }) => `25px solid ${colors[variant]}`};
 
+    @media only screen and (max-width: 600px) {
+      width: 150px;
+      height: 150px;
+      border: ${({ variant }) => `20px solid ${colors[variant]}`};
+    }
+
+    @media only screen and (max-width: 400px) {
+      width: 120px;
+      height: 120px;
+      border: ${({ variant }) => `15px solid ${colors[variant]}`};
+
+      img{
+        width: 40px; 
+      }
+    }
 
   `,
   big: css`
     width: 400px;
     height: 400px;
+    border: ${({ variant }) => `50px solid ${colors[variant]}`};
 
     img{
       width: 100px; 
+    }
+
+    @media only screen and (max-width: 1360px) {
+      width: 300px;
+      height: 300px;
+      border: ${({ variant }) => `35px solid ${colors[variant]}`};
+
+      ${({ win }) => win && css`
+        box-shadow:
+          0 0 0 30px rgba(222, 222, 222, 0.04),
+          0 0 0 60px rgba(222, 222, 222, 0.04),
+          0 0 0 80px rgba(222, 222, 222, 0.04);
+      `}
+    }
+
+    @media only screen and (max-width: 1100) {
+      width: 250px;
+      height: 250px;
+
+      ${({ win }) => win && css`
+        box-shadow:
+          0 0 0 40px rgba(222, 222, 222, 0.04),
+          0 0 0 80px rgba(222, 222, 222, 0.04),
+          0 0 0 120px rgba(222, 222, 222, 0.04);
+      `}
     }
   `
 }
@@ -59,9 +77,10 @@ export const Container = styled.button`
   border-radius: 50%;
   transition: all 0.2s ease;
 
-  ${({ variant }) => variants[variant]};
-
-  ${({ size }) => sizes[size]};
+  box-shadow: 0 0.7em 0 ${({ variant }) => colors[`${variant}Dark`]};
+  &:active{
+    box-shadow: 0 0 0 ${({ variant }) => colors[`${variant}Dark`]};
+  }
 
   ${({ win }) => win && css`
     box-shadow:
@@ -69,6 +88,8 @@ export const Container = styled.button`
       0 0 0 90px rgba(222, 222, 222, 0.04),
       0 0 0 140px rgba(222, 222, 222, 0.04);
   `}
+
+  ${({ size }) => sizes[size]};
 
   &:disabled {
     pointer-events: none;

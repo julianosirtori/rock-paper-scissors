@@ -9,6 +9,22 @@ export const Container = styled.div`
   justify-content: center;
   width: 500px;
   height: 500px;
+
+  @media only screen and (max-width: 600px) {
+    width: 380px;
+    height: 380px;
+    .background{
+      width: 200px;
+    }
+  }
+
+  @media only screen and (max-width: 400px) {
+    width: 280px;
+    height: 280px;
+    .background{
+      width: 200px;
+    }
+  }
 `
 
 export const ItemPaper = styled(Item)`

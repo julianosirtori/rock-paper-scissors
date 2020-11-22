@@ -29,5 +29,10 @@ export const Container = styled.div`
     }
   }
 
+  @media only screen and (max-width: 1360px) {
+    margin: 0 16px;
+  
+  }
+
 
 `
