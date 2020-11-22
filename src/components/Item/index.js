@@ -8,7 +8,7 @@ import IconScissors from '../../asset/icon-scissors.svg'
 
 import * as S from './styles'
 
-const Item = ({ variant, ...props }) => {
+const Item = ({ variant, win = false, size = 'default', ...props }) => {
   const getImage = useCallback(() => {
     switch (variant) {
       case 'paper':
@@ -22,15 +22,21 @@ const Item = ({ variant, ...props }) => {
     }
   }, [variant])
 
+  if (!variant) {
+    return <S.WaitingResult size={size}/>
+  }
+
   return (
-    <S.Container variant={variant} {...props}>
+    <S.Container win={win} variant={variant} size={size} {...props}>
       {getImage()}
     </S.Container>
   )
 }
 
 Item.propTypes = {
-  variant: PropTypes.string
+  variant: PropTypes.string,
+  win: PropTypes.bool,
+  size: PropTypes.oneOf(['big', 'default'])
 }
 
 export default Item

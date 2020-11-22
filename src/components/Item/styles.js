@@ -1,8 +1,13 @@
 import styled, { css } from 'styled-components'
 
+const borderSizes = {
+  default: '25px',
+  big: '50px'
+}
+
 const variants = {
   paper: css`
-    border: 25px solid #5572f2;
+    border: ${({ size }) => borderSizes[size]} solid #5572f2;
     box-shadow: 0 0.7em 0 #2844bf;
 
     &:active{
@@ -11,7 +16,7 @@ const variants = {
 
   `,
   rock: css`
-    border: 25px solid #de3f5b;
+    border: ${({ size }) => borderSizes[size]} solid #de3f5b;
     box-shadow: 0 0.7em 0 #9f1232;
 
     &:active{
@@ -19,7 +24,7 @@ const variants = {
     }
   `,
   scissors: css`
-    border: 25px solid #eba722;
+    border: ${({ size }) => borderSizes[size]} solid #eba722;
     box-shadow: 0 0.7em 0 #c76c1b;
 
     &:active{
@@ -28,17 +33,46 @@ const variants = {
   `
 }
 
-export const Container = styled.div`
-  background: #fff;
-  width: 200px;
-  height: 200px;
+const sizes = {
+  default: css`
+    width: 200px;
+    height: 200px;
+
+
+  `,
+  big: css`
+    width: 400px;
+    height: 400px;
+
+    img{
+      width: 100px; 
+    }
+  `
+}
+
+export const Container = styled.button`
+  background: ${({ disabled }) => disabled ? '#dedede' : '#fff'} ;
+
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   transition: all 0.2s ease;
 
-  ${({ variant }) => variants[variant || 'paper']};
+  ${({ variant }) => variants[variant]};
+
+  ${({ size }) => sizes[size]};
+
+  ${({ win }) => win && css`
+    box-shadow:
+      0 0 0 40px rgba(222, 222, 222, 0.04),
+      0 0 0 90px rgba(222, 222, 222, 0.04),
+      0 0 0 140px rgba(222, 222, 222, 0.04);
+  `}
+
+  &:disabled {
+    pointer-events: none;
+  }
 
   &:hover{
     cursor: pointer;
@@ -52,4 +86,11 @@ export const Container = styled.div`
   img{
     border-radius: 50%;
   }
+`
+
+export const WaitingResult = styled.div`
+ ${({ size }) => sizes[size]};
+  background: rgba(0,0,0, 0.2);
+  border-radius: 50%;
+
 `
