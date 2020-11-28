@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  display: flex;
+  display: ${({ display }) => display ? 'flex' : 'none'};
   flex-direction: column;
   align-items: center;
   margin: 0 48px;
+  transition: all 0.5s;
 
   h1{
     font-size: 48px;

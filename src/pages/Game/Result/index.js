@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 
 import { useLocation } from 'react-router-dom'
+
+import possibleChoices from '../../../services/possibleChoices'
 
 import Item from '../../../components/Item'
 import GameResult from '../../../components/GameResult'
 
 import * as S from './styles'
 
-const possibleChoices = {
-  0: 'paper',
-  1: 'rock',
-  2: 'scissors'
-}
-
 function Result () {
   const [youPicked, setYouPicked] = useState('')
   const [housePicked, setHousePicked] = useState('')
-  const [isYouWin] = useState(false)
+  const [isYouWin, setIsYouWin] = useState()
 
   const location = useLocation()
 
@@ -24,13 +20,23 @@ function Result () {
     const { state } = location
 
     setYouPicked(state.item)
+  }, [location])
 
+  useEffect(() => {
     const timer = setTimeout(() => {
-      setHousePicked(possibleChoices[Math.floor(Math.random() * 2)])
+      let picked = ''
+      do {
+        picked = possibleChoices[Math.floor(Math.random() * 3)]
+      } while (picked === youPicked)
+      setHousePicked(picked)
     }, 1000)
 
     return () => clearTimeout(timer)
-  }, [location])
+  }, [youPicked])
+
+  const callbackResult = useCallback((result) => {
+    setIsYouWin(result)
+  }, [setIsYouWin])
 
   return (
     <S.Container>
@@ -39,7 +45,12 @@ function Result () {
         <Item size="big" disabled win={isYouWin} variant={youPicked}/>
       </S.IndividualResult>
 
-      {housePicked && youPicked && <GameResult win={isYouWin}/>}
+      <GameResult
+        display={housePicked && youPicked ? 1 : 0}
+        handleResult={callbackResult}
+        youPicked={youPicked}
+        housePicked={housePicked}
+      />
 
       <S.IndividualResult>
         <span>THE HOUSE PICKED</span>
