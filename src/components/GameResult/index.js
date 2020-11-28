@@ -15,11 +15,14 @@ function GameResult ({ handleResult, youPicked, housePicked, display, ...props }
   const { score, setScore } = useScore()
 
   useEffect(() => {
+    if (!housePicked) {
+      return
+    }
     const result = ((idsByItem[youPicked] + 1) % 3 === idsByItem[housePicked])
     setWin(result)
     handleResult(result)
     setScore(score + (result ? 1 : -1))
-  }, [handleResult, youPicked, housePicked])
+  }, [housePicked])
 
   const goStart = useCallback(() => {
     history.replace('/')
