@@ -6,6 +6,18 @@ export const Container = styled.div`
   align-items: center;
   margin: 0 48px;
   transition: all 0.5s;
+  animation: scale 0.5s;
+
+  @keyframes scale {
+    from {
+      display: none;
+      transform: scale(0.5);
+    }
+    to {
+      display: flex;
+      transform: scale(1);
+    }
+  }
 
   h1{
     font-size: 48px;

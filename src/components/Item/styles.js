@@ -75,7 +75,7 @@ export const Container = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: all 0.2s ease;
+  transition: all 0.5s ease;
 
   box-shadow: 0 0.7em 0 ${({ variant }) => colors[`${variant}Dark`]};
   &:active{

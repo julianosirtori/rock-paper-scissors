@@ -5,6 +5,8 @@ export const Container = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  max-width: 1200px;
 `
 
 export const IndividualResult = styled.div`

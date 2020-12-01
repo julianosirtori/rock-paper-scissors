@@ -12,7 +12,7 @@ import * as S from './styles'
 function Result () {
   const [youPicked, setYouPicked] = useState('')
   const [housePicked, setHousePicked] = useState('')
-  const [isYouWin, setIsYouWin] = useState()
+  const [isYouWin, setIsYouWin] = useState(undefined)
 
   const location = useLocation()
 
@@ -42,7 +42,7 @@ function Result () {
     <S.Container>
       <S.IndividualResult>
         <span>YOU PICKED</span>
-        <Item size="big" disabled win={isYouWin} variant={youPicked}/>
+        <Item size="big" disabled win={isYouWin !== undefined && isYouWin} variant={youPicked}/>
       </S.IndividualResult>
 
       <GameResult
@@ -54,7 +54,7 @@ function Result () {
 
       <S.IndividualResult>
         <span>THE HOUSE PICKED</span>
-        <Item size="big" disabled win={!isYouWin} variant={housePicked}/>
+        <Item size="big" disabled win={isYouWin !== undefined && !isYouWin} variant={housePicked}/>
 
       </S.IndividualResult>
     </S.Container>
